@@ -1,0 +1,53 @@
+{
+  "name": "goldfinch",
+  "version": "0.0.1",
+  "description": "OIDC Provider UI built with Ory!",
+  "main": "src/app.ts",
+  "scripts": {
+    "test": "jest",
+    "prebuild": "rimraf dist/*",
+    "build": "cross-env NODE_ENV=production rollup -c",
+    "prestart": "rimraf dist/*",
+    "start": "cross-env NODE_ENV=development rollup -c -w --debug"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Devcon4/goldfinch.git"
+  },
+  "author": "Devyn Cyphers (devcon4)",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/plugin-proposal-class-properties": "^7.14.5",
+    "@babel/plugin-proposal-decorators": "^7.15.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.15.6",
+    "@babel/preset-env": "^7.15.6",
+    "@babel/preset-typescript": "^7.15.0",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-commonjs": "^20.0.0",
+    "@rollup/plugin-html": "^0.2.3",
+    "@rollup/plugin-node-resolve": "^13.0.4",
+    "@types/eslint": "^7.28.0",
+    "@types/jest": "^27.0.1",
+    "@typescript-eslint/eslint-plugin": "^4.31.1",
+    "@typescript-eslint/parser": "^4.31.1",
+    "core-js": "^3.17.3",
+    "cross-env": "^7.0.3",
+    "eslint": "^7.32.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^8.3.0",
+    "jest": "^27.2.0",
+    "lit-element": "^2.5.1",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.56.3",
+    "rollup-plugin-copy": "^3.4.0",
+    "rollup-plugin-delete": "^2.0.0",
+    "rollup-plugin-dev": "^2.0.0",
+    "rollup-plugin-livereload": "^2.0.5",
+    "rollup-plugin-minify-html-literals": "^1.2.6",
+    "rollup-plugin-terser": "^7.0.2",
+    "router-slot": "^1.5.4",
+    "ts-jest": "^27.0.5",
+    "typescript": "^4.4.3"
+  }
+}

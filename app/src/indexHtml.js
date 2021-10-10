@@ -56,7 +56,11 @@ export const indexHtml = (
             margin: 0;
             min-height: 100%;
           }
-          
+
+          .density {
+            
+          }
+
           body {  
             --on: inherit;
             --off: ;
@@ -76,6 +80,10 @@ export const indexHtml = (
             --mdc-theme-surface: var(--gldLightAccent);
             --mdc-theme-background: var(--gldLightShade);
 
+            --mdc-text-field-fill-color: var(--light, var(--gld4)) var(--dark, var(--gld3));
+            --mdc-text-field-label-ink-color: var(--gldText);
+            --mdc-text-field-ink-color: var(--gldText);
+            
             /* Raw are RGB versions. Useful to compose more complex colors ex: rgba(var(--gld0-raw), .2) */
             --gld0-raw: 74, 75, 81;
             --gld1-raw: 86, 87, 94;

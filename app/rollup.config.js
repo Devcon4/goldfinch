@@ -8,6 +8,8 @@ import livereload from 'rollup-plugin-livereload';
 import minifyHTML from 'rollup-plugin-minify-html-literals';
 import { terser } from 'rollup-plugin-terser';
 import { indexHtml } from './src/indexHtml.js';
+import omt from '@surma/rollup-plugin-off-main-thread';
+import iifeStr from './plugins/iife-str';
 
 const extensions = ['.js', '.ts'];
 
@@ -29,6 +31,7 @@ const config = {
   plugins: [
     html({ template: (opts) => indexHtml(opts, ['app.']) }),
     minifyHTML(),
+    iifeStr({ minify: true }),
     copy(copyConfig),
     resolve({ extensions }),
     commonjs(),

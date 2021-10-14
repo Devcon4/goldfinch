@@ -92,10 +92,10 @@ export const indexHtml = (
             --gld4-raw: 240, 247, 252;
             --gld5-raw: 218, 226, 232;
             --gld6-raw: 170, 181, 191;
-            --gld7-raw: 242, 79, 19;
+            --gld7-raw: 248, 234, 17;
             --gld8-raw: 242, 190, 34;
-            --gld9-raw: 242, 79, 19;
-            --gld10-raw: 242, 79, 19;
+            --gld9-raw: 248, 234, 17;
+            --gld10-raw: 248, 234, 17;
             --gld11-raw: 230, 197, 103;
             --gld12-raw: 68, 126, 179;
             --gld13-raw: 161, 205, 68;
@@ -110,15 +110,15 @@ export const indexHtml = (
             --gld3: rgb(32, 34, 36);
 
             /* Light colors. */
-            --gld4: rgb(240, 247, 252);
+            --gld4: rgb(229, 244, 255);
             --gld5: rgb(218, 226, 232);
             --gld6: rgb(170, 181, 191);
 
             /* Primary colors. */
-            --gld7: rgb(242, 79, 19);
+            --gld7: rgb(248, 234, 17);
             --gld8: rgb(242, 190, 34);
-            --gld9: rgb(242, 79, 19);
-            --gld10: rgb(242, 79, 19);
+            --gld9: rgb(248, 234, 17);
+            --gld10: rgb(248, 234, 17);
             
             /* Action colors. */
             --gld11: rgb(230, 197, 103);

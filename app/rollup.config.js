@@ -1,15 +1,14 @@
 import babel from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
-import html from '@rollup/plugin-html';
-import resolve from '@rollup/plugin-node-resolve';
+// import html from '@rollup/plugin-html';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
+import html from '@web/rollup-plugin-html';
 import copy from 'rollup-plugin-copy';
 import dev from 'rollup-plugin-dev';
 import livereload from 'rollup-plugin-livereload';
-import minifyHTML from 'rollup-plugin-minify-html-literals';
 import { terser } from 'rollup-plugin-terser';
-import { indexHtml } from './src/index.js';
 
-const extensions = ['.js', '.ts'];
+const extensions = ['.ts', '.mjs', '.js', '.json', '.node'];
 
 /** @type {import('rollup-plugin-copy').CopyOptions} */
 const copyConfig = {
@@ -18,7 +17,7 @@ const copyConfig = {
 
 /** @type {import('rollup').RollupOptions} */
 const config = {
-  input: ['src/app.ts', 'src/head.ts'],
+  input: ['./src/app.ts'],
   output: {
     dir: 'dist',
     format: 'es',
@@ -27,11 +26,13 @@ const config = {
     chunkFileNames: '[name].[hash].js',
   },
   plugins: [
-    html({ template: (opts) => indexHtml(opts, ['app.','head.']) }),
-    minifyHTML(),
-    copy(copyConfig),
-    resolve({ extensions }),
+    nodeResolve({ extensions }),
     commonjs(),
+    html({
+      input: './src/index.html',
+      minify: true,
+    }),
+    copy(copyConfig),
     babel({
       extensions,
       babelHelpers: 'bundled',

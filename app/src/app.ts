@@ -1,17 +1,29 @@
 import '@material/mwc-icon-button';
 import { css, html, LitElement } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
-import { IRoute } from 'router-slot';
+import { customElement, property, query } from 'lit/decorators.js';
+import { IRoute, RouterSlot } from 'router-slot';
+import 'router-slot/router-slot';
 import { fromEvent } from 'rxjs';
 import { flexHostStyles, globalStyles } from './styles/globalStyles';
 
-const routes: IRoute<any>[] = [];
+const routes: Array<IRoute> = [
+  {
+    path: 'home',
+    component: async () => await import('./components/example')
+  },
+  {
+    path: '**',
+    redirectTo: 'home',
+    pathMatch: 'full',
+  },
+];
 
 @customElement('cara-app')
-export class AppElement extends LitElement {
+export default class AppElement extends LitElement {
   @property()
   colorTheme: 'dark' | 'light' = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-
+  @query("router-slot") $routerSlot!: RouterSlot;
+  
   toggleTheme() {
     const isLight = this.colorTheme === 'light';
     const on = 'var(--on)';
@@ -23,6 +35,7 @@ export class AppElement extends LitElement {
   }
 
   firstUpdated() {
+    this.$routerSlot.add(routes);
     fromEvent<MediaQueryListEvent>(window.matchMedia('(prefers-color-scheme: dark)'), 'change')
       .subscribe(e => this.colorTheme = e.matches ? 'dark': 'light');
   }
@@ -46,7 +59,7 @@ export class AppElement extends LitElement {
         <div class="box box-6">surface</div>
         <div class="box box-7">error</div>
       </div>
-      <router-slot class="flex" .routes="${routes}"></router-slot>
+      <router-slot class="flex"></router-slot>
     </div>`;
   }
 

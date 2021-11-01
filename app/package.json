@@ -1,7 +1,7 @@
 {
-  "name": "goldfinch",
+  "name": "caracara",
   "version": "0.0.1",
-  "description": "OIDC Provider UI built with Ory!",
+  "description": "Template repo for creating a Lit app!",
   "main": "src/app.ts",
   "scripts": {
     "test": "jest",
@@ -12,10 +12,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/Devcon4/goldfinch.git"
+    "url": "git+ssh://git@github.com/Devcon4/caracara.git"
   },
   "author": "Devyn Cyphers (devcon4)",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.15.8",
     "@babel/plugin-proposal-class-properties": "^7.14.5",

@@ -1,34 +1,22 @@
 import '@material/mwc-icon-button';
 import { css, html, LitElement } from 'lit';
 import { customElement, query, state } from 'lit/decorators.js';
-import { IRoute, RouterSlot } from 'router-slot';
+import { RouterSlot } from 'router-slot';
 import 'router-slot/router-slot';
 import { async } from './services/decoratorUtils';
+import { routes } from './services/routes';
 import themeState, { ThemeType } from './services/themeState';
 import { flexHostStyles, globalStyles } from './styles/globalStyles';
 
-const routes: Array<IRoute> = [
-  {
-    path: 'home',
-    component: async () => await import('./components/example')
-  },
-  {
-    path: '**',
-    redirectTo: 'home',
-    pathMatch: 'full',
-  },
-];
-
 @customElement('cara-app')
 export default class AppElement extends LitElement {
-
   @state()
   @async(themeState.theme)
   colorTheme: ThemeType;
 
-  @query("router-slot")
+  @query('router-slot')
   $routerSlot!: RouterSlot;
-  
+
   toggleThemeAction = () => themeState.toggleTheme();
 
   firstUpdated() {

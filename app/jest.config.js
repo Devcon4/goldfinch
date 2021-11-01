@@ -1,7 +1,6 @@
 /** @type {import('@jest/types/build/Config').DefaultOptions} */
 const config = {
   preset: 'ts-jest',
-  testEnvironment: 'node',
+  testEnvironment: 'jsdom',
 };
-
 module.exports = config;

@@ -1,9 +1,10 @@
 import '@material/mwc-icon-button';
 import { css, html, LitElement } from 'lit';
-import { customElement, property, query } from 'lit/decorators.js';
+import { customElement, query, state } from 'lit/decorators.js';
 import { IRoute, RouterSlot } from 'router-slot';
 import 'router-slot/router-slot';
-import { fromEvent } from 'rxjs';
+import { async } from './services/decoratorUtils';
+import themeState, { ThemeType } from './services/themeState';
 import { flexHostStyles, globalStyles } from './styles/globalStyles';
 
 const routes: Array<IRoute> = [
@@ -20,24 +21,18 @@ const routes: Array<IRoute> = [
 
 @customElement('cara-app')
 export default class AppElement extends LitElement {
-  @property()
-  colorTheme: 'dark' | 'light' = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  @query("router-slot") $routerSlot!: RouterSlot;
+
+  @state()
+  @async(themeState.theme)
+  colorTheme: ThemeType;
+
+  @query("router-slot")
+  $routerSlot!: RouterSlot;
   
-  toggleTheme() {
-    const isLight = this.colorTheme === 'light';
-    const on = 'var(--on)';
-    const off = 'var(--off)';
-    
-    document.body.style.setProperty('--light', isLight ? off : on);
-    document.body.style.setProperty('--dark', isLight ? on : off);
-    this.colorTheme = isLight ? 'dark': 'light';
-  }
+  toggleThemeAction = () => themeState.toggleTheme();
 
   firstUpdated() {
     this.$routerSlot.add(routes);
-    fromEvent<MediaQueryListEvent>(window.matchMedia('(prefers-color-scheme: dark)'), 'change')
-      .subscribe(e => this.colorTheme = e.matches ? 'dark': 'light');
   }
 
   render() {
@@ -46,7 +41,7 @@ export default class AppElement extends LitElement {
         <h1>🐦 App Works!</h1>
         <mwc-icon-button
           id="theme-btn"
-          @click=${() => this.toggleTheme()}
+          @click=${this.toggleThemeAction}
           .icon="${this.colorTheme === 'dark' ? 'light_mode' : 'nights_stay'}"
         ></mwc-icon-button>
       </div>

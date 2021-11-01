@@ -26,6 +26,7 @@ export default class ExampleElement extends LitElement {
         h2 {
           text-align: center;
           transition: all 150ms linear;
+          text-transform: capitalize;
         }
       `
     ];

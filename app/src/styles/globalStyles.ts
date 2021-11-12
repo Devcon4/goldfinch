@@ -40,7 +40,7 @@ export const globalStyles = css`
     font-weight: 500;
     font-size: 18px;
     text-decoration: none;
-    transition: all 150ms linear;
+    transition: all 100ms linear;
   }
 
   a:hover {

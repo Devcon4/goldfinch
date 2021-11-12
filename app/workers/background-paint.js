@@ -1,3 +1,7 @@
+
+// This paint is copied from jakearchibald and his great example of fleck paint.
+// https://github.com/jakearchibald/houdini-paint-flecks/blob/main/src/worklet.js
+
 const maxPointDistance = 0.5;
 
 /** Bezier points for a seven point circle, to 3 decimal places */

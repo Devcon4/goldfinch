@@ -2,20 +2,16 @@ import { IRoute } from 'router-slot';
 
 export const routes: Array<IRoute> = [
   {
-    path: 'home',
-    component: async () => await import('../components/example')
-  },
-  {
-    path: 'login',
+    path: 'auth/login',
     component: async () => await import('../components/login.component')
   },
   {
-    path: 'register',
+    path: 'auth/register',
     component: async () => await import('../components/register.component')
   },
   {
     path: '**',
-    redirectTo: 'home',
+    redirectTo: 'auth/login',
     pathMatch: 'full',
   },
 ];

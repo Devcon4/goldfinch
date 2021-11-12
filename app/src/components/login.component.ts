@@ -27,7 +27,7 @@ export default class LoginElement extends LitElement {
           validationMessage="Must enter a password!"
         ></mwc-textfield>
         <mwc-button unelevated label="Login"></mwc-button>
-        <a href="./register">Need to register?</a>
+        <a href="./auth/register">Need to register?</a>
       </div>
     </div>`;
   }

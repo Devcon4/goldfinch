@@ -6,6 +6,14 @@ export const routes: Array<IRoute> = [
     component: async () => await import('../components/example')
   },
   {
+    path: 'login',
+    component: async () => await import('../components/login.component')
+  },
+  {
+    path: 'register',
+    component: async () => await import('../components/register.component')
+  },
+  {
     path: '**',
     redirectTo: 'home',
     pathMatch: 'full',

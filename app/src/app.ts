@@ -1,4 +1,5 @@
 import '@material/mwc-icon-button';
+import fleck from 'iife-str:../workers/background-paint.js';
 import { css, html, LitElement } from 'lit';
 import { customElement, query, state } from 'lit/decorators.js';
 import { RouterSlot } from 'router-slot';
@@ -7,6 +8,10 @@ import { async } from './services/decoratorUtils';
 import { routes } from './services/routes';
 import themeState, { ThemeType } from './services/themeState';
 import { flexHostStyles, globalStyles } from './styles/globalStyles';
+
+const fleckBlob = new Blob([fleck], { type: 'text/javascript' });
+const fleckUrl = URL.createObjectURL(fleckBlob);
+CSS.paintWorklet.addModule(fleckUrl);
 
 @customElement('cara-app')
 export default class AppElement extends LitElement {
@@ -33,15 +38,6 @@ export default class AppElement extends LitElement {
           .icon="${this.colorTheme === 'dark' ? 'light_mode' : 'nights_stay'}"
         ></mwc-icon-button>
       </div>
-      <div class="box-list">
-        <div class="box box-1">primary</div>
-        <div class="box box-2">primary variant</div>
-        <div class="box box-3">secondary</div>
-        <div class="box box-4">secondary variant</div>
-        <div class="box box-5">background</div>
-        <div class="box box-6">surface</div>
-        <div class="box box-7">error</div>
-      </div>
       <router-slot class="flex"></router-slot>
     </div>`;
   }
@@ -53,6 +49,37 @@ export default class AppElement extends LitElement {
       css`
         .app {
           display: flex;
+
+          /* background-image: url(https://media.giphy.com/media/r660FSI6nkvGBr7k3M/giphy.gif); */
+          background-image: paint(fleck);
+          resize: both;
+          overflow: hidden;
+
+          --clr1: var(--light, #03a2d3) var(--dark, #f8f412);
+          --clr2: var(--light, #74d8e6) var(--dark, #ee1669);
+          --clr3: var(--light, #f5f846) var(--dark, #7639a0);
+          --clr4: var(--light, #77ebff) var(--dark, #edf11c);
+          --clr5: var(--light, #e2f9fe) var(--dark, #f8ecec);
+          --clr6: var(--light, #1d2f35) var(--dark, #222222);
+
+          --clr1: var(--light, #03a2d3) var(--dark, #f8f412);
+          --clr2: var(--light, #74d8e6) var(--dark, #ee1669);
+          --clr3: var(--light, #f5f846) var(--dark, #7639a0);
+          --clr4: var(--light, #77ebff) var(--dark, #edf11c);
+          --clr5: var(--light, #e2f9fe) var(--dark, #f8ecec);
+          --clr6: var(--light, #1d2f35) var(--dark, #222222);
+          /* --fleck-colors: #231F20,#4b4949 #dadada,#bbbbbb #006738,#094d2e #2B9D46,#24532f #39B649,#59e76c; */
+          --fleck-colors: var(--clr1) var(--clr2) var(--clr3) var(--clr4)
+            var(--clr5) var(--clr6);
+          --fleck-seed: 124;
+          --fleck-cell-size: 75;
+          --fleck-size-base: 6;
+          --fleck-density: 15;
+          /* --fleck-seed: 124;
+          --fleck-cell-size: 150;
+          --fleck-size-base: 700;
+          --fleck-density: 4; */
+          /* background-image: url(https://images.unsplash.com/photo-1567095761054-7a02e69e5c43?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fill=crop&w=774&q=80); */
         }
 
         .header {
@@ -61,57 +88,15 @@ export default class AppElement extends LitElement {
           padding: 12px;
         }
 
-        .box-list {
-          max-width: 1024px;
-          align-self: center;
-          display: flex;
-          flex-direction: row;
-          flex-wrap: wrap;
-          justify-content: center;
-        }
-
-        .box {
-          width: calc(100% / 4 - 48px);
-          aspect-ratio: 1;
-          border-radius: 5px;
-          padding: 12px;
+        h1 {
+          width: fit-content;
+          background-color: var(--light, rgba(255, 255, 255, 0.5))
+            var(--dark, rgba(0, 0, 0, 0.3));
+          backdrop-filter: blur(10px);
+          padding: 12px 24px;
           margin: 12px;
-          filter: drop-shadow(0 3px 3px rgba(0, 0, 0, 0.2));
-        }
-
-        @media (max-width: 512px) {
-          .box {
-            width: 100%;
-          }
-        }
-
-        .box-1 {
-          background-color: var(--cara-primary);
-          color: var(--cara-on-primary);
-        }
-        .box-2 {
-          background-color: var(--cara-primary-variant);
-          color: var(--cara-on-primary);
-        }
-        .box-3 {
-          background-color: var(--cara-secondary);
-          color: var(--cara-on-secondary);
-        }
-        .box-4 {
-          background-color: var(--cara-secondary-variant);
-          color: var(--cara-on-secondary);
-        }
-        .box-5 {
-          background-color: var(--cara-background);
-          color: var(--cara-on-background);
-        }
-        .box-6 {
-          background-color: var(--cara-surface);
-          color: var(--cara-on-surface);
-        }
-        .box-7 {
-          background-color: var(--cara-error);
-          color: var(--cara-on-error);
+          border-radius: 5px;
+          box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
         }
       `,
     ];

@@ -7,6 +7,7 @@ import copy from 'rollup-plugin-copy';
 import dev from 'rollup-plugin-dev';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
+import iifeStr from './plugins/iife-str';
 
 const extensions = ['.ts', '.mjs', '.js', '.json', '.node'];
 
@@ -27,6 +28,7 @@ const config = {
   },
   plugins: [
     nodeResolve({ extensions }),
+    iifeStr({ minify: true }),
     commonjs(),
     html({
       input: './src/index.html',

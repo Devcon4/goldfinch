@@ -9,6 +9,31 @@ export const flexHostStyles = css`
   }
 `;
 
+export const glassStyles = css`
+  .transparent-fields {
+    --mdc-text-field-fill-color: none;
+    --mdc-text-field-label-ink-color: none;
+    --mdc-text-field-ink-color: none;
+  }
+
+  .glass-box {
+    display: flex;
+    flex-direction: column;
+    padding: 48px;
+    padding-top: 12px;
+    background-color: var(--light, rgba(255, 255, 255, 0.5))
+      var(--dark, rgba(0, 0, 0, 0.3));
+    backdrop-filter: blur(10px);
+    min-width: 300px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+  }
+
+  mwc-textfield {
+    padding-bottom: 12px;
+  }
+`;
+
 export const globalStyles = css`
   a {
     color: var(--cara-on-surface);

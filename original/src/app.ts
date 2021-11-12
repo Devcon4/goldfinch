@@ -87,13 +87,13 @@ export class AppElement extends LitElement {
           --clr4: var(--light, #77ebff) var(--dark, #edf11c);
           --clr5: var(--light, #e2f9fe) var(--dark, #f8ecec);
           --clr6: var(--light, #1d2f35) var(--dark, #222222);
-          --fleck-colors: #231F20,#4b4949 #dadada,#bbbbbb #006738,#094d2e #2B9D46,#24532f #39B649,#59e76c;
-          /* --fleck-colors: var(--clr1) var(--clr2) var(--clr3) var(--clr4)
-            var(--clr5) var(--clr6); */
-          /* --fleck-seed: 124;
+          /* --fleck-colors: #231F20,#4b4949 #dadada,#bbbbbb #006738,#094d2e #2B9D46,#24532f #39B649,#59e76c; */
+          --fleck-colors: var(--clr1) var(--clr2) var(--clr3) var(--clr4)
+            var(--clr5) var(--clr6);
+          --fleck-seed: 124;
           --fleck-cell-size: 75;
           --fleck-size-base: 6;
-          --fleck-density: 15; */
+          --fleck-density: 15;
           /* --fleck-seed: 124;
           --fleck-cell-size: 150;
           --fleck-size-base: 700;
